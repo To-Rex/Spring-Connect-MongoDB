@@ -24,12 +24,19 @@ public class ProductController {
         return ResponseEntity.ok(this.productRepository.findAll());
     }
 
-    @PostMapping("/product")
+    /*@PostMapping("/product")
     public ResponseEntity<Product> createProduct(@RequestBody ProductRequest productRequest) {
-
         Product product = new Product();
         product.setName(productRequest.getName());
         product.setDescription(productRequest.getDescription());
+
+        return ResponseEntity.status(201).body(this.productRepository.save(product));
+    }*/
+    @PostMapping("/product")
+    public ResponseEntity<Product> createProduct(@RequestParam String name, @RequestParam String description) {
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
 
         return ResponseEntity.status(201).body(this.productRepository.save(product));
     }
